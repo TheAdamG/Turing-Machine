@@ -9,5 +9,10 @@ public class TuringMachine {
   }
 
 
+  public void startMachine() {
+
+
+  }
+
 
 }
