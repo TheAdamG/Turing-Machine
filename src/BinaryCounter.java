@@ -2,7 +2,7 @@ public class BinaryCounter {
 
   public static void main(String[] args) {
 
-    Tape newTape = new Tape(new String[]{"1", "1", "1"});
+    Tape newTape = new Tape(new String[]{"1", "1", "1", "1"});
 
     StateTransition st01 = new StateTransition(Tape.BLANK, Tape.BLANK, Direction.RIGHT, 1);
     StateTransition st02 = new StateTransition("0", "0", Direction.LEFT, 0);

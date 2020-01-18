@@ -4,23 +4,38 @@ public class Tape {
 
   private String[] tape;
   private int head;
-  private static int TAPE_SIZE = 16;
+  private static int TAPE_SIZE = 50;
   public static String BLANK = "B";
 
-  public Tape(String[] startSymbols) {
+  public Tape() {
     tape = new String[TAPE_SIZE];
     head = TAPE_SIZE / 2;
+    fillBlank();
+  }
+
+  public Tape(String[] startSymbols) {
+    this();
     setInitialState(startSymbols);
   }
 
-  private void setInitialState(String[] startSymbols) {
+  public Tape (String[] startSymbols, boolean startAtEnd) {
+    this(startSymbols);
+    if (startAtEnd) {
+      head += startSymbols.length - 1;
+    }
+  }
+
+  private void fillBlank() {
     for (int i = 0; i < TAPE_SIZE ; i++) {
       tape[i] = BLANK;
     }
+  }
+
+  private void setInitialState(String[] startSymbols) {
+
     if (Objects.nonNull(startSymbols)) {
       System.arraycopy(startSymbols, 0, tape, head, startSymbols.length);
     }
-    //head += startSymbols.length - 1;
   }
 
   public String readTape() {
@@ -42,7 +57,6 @@ public class Tape {
     StringBuilder bottomRow = new StringBuilder();
     for (int i = 0; i < tape.length; i++) {
       if (Objects.nonNull(tape[i])) {
-        //if (!tape[i].equals(BLANK)) {
           topRow.append("---");
           middleRow.append("|").append(tape[i]).append("|");
           if (i == head) {
@@ -50,8 +64,6 @@ public class Tape {
           } else {
             bottomRow.append("---");
           }
-        // }
-
       }
     }
 
