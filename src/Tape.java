@@ -1,34 +1,32 @@
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Tape {
 
   private String[] tape;
   private int head;
-  private static int TAPE_SIZE = 50;
   public static String BLANK = "B";
 
-  public Tape() {
-    tape = new String[TAPE_SIZE];
-    head = TAPE_SIZE / 2;
+  public Tape(int size) {
+    tape = new String[size];
+    head = size / 2;
     fillBlank();
   }
 
-  public Tape(String[] startSymbols) {
-    this();
+  public Tape(int size, String[] startSymbols) {
+    this(size);
     setInitialState(startSymbols);
   }
 
-  public Tape (String[] startSymbols, boolean startAtEnd) {
-    this(startSymbols);
+  public Tape (int size, String[] startSymbols, boolean startAtEnd) {
+    this(size, startSymbols);
     if (startAtEnd) {
       head += startSymbols.length - 1;
     }
   }
 
   private void fillBlank() {
-    for (int i = 0; i < TAPE_SIZE ; i++) {
-      tape[i] = BLANK;
-    }
+    Arrays.fill(tape, BLANK);
   }
 
   private void setInitialState(String[] startSymbols) {
